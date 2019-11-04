@@ -152,6 +152,258 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-关于float" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/10/关于float/">关于float</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/10/关于float/" class="archive-article-date">
+  	<time datetime="2019-10-10T12:20:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="关于float的something"><a href="#关于float的something" class="headerlink" title="关于float的something"></a>关于float的something</h2><ul>
+<li><h3 id="脱离文档流"><a href="#脱离文档流" class="headerlink" title="脱离文档流"></a>脱离文档流</h3></li>
+<li><h3 id="不脱离文本流"><a href="#不脱离文本流" class="headerlink" title="不脱离文本流"></a>不脱离文本流</h3></li>
+</ul>
+<p>脱离文档流：不对其他元素的布局产生影响</p>
+<p>不脱离文本流：“float本来就是用来做图文混排”</p>
+<p>实验过程中的理解：对其他元素相当于不存在，但是把文本的位置占掉了，相当于插入了占位符</p>
+<h3 id="float-对自身的影响"><a href="#float-对自身的影响" class="headerlink" title="float 对自身的影响"></a>float 对自身的影响</h3><p>形成块“block”：尽量靠上，尽量靠左</p>
+<h3 id="对兄弟的影响："><a href="#对兄弟的影响：" class="headerlink" title="对兄弟的影响："></a>对兄弟的影响：</h3><ul>
+<li>贴非float元素</li>
+<li>旁边贴float元素</li>
+<li>不影响其他块级元素的位置</li>
+</ul>
+<h3 id="对父级元素的影响"><a href="#对父级元素的影响" class="headerlink" title="对父级元素的影响"></a>对父级元素的影响</h3><ul>
+<li>从布局消失</li>
+<li>高度塌陷</li>
+</ul>
+<h1 id="过程中愚蠢的问题"><a href="#过程中愚蠢的问题" class="headerlink" title="过程中愚蠢的问题"></a>过程中愚蠢的问题</h1><ul>
+<li><h3 id="高度塌陷！！！"><a href="#高度塌陷！！！" class="headerlink" title="高度塌陷！！！"></a>高度塌陷！！！</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"background-color: brown;width:200px;height: 300px;float: left;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"background-color: khaki;width:200px;height: 300px;float: left;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"background-color: violet;width:200px;height: 300px;float: left;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"width:200px;height: 300px;background-color: tomato"</span>&gt;</span>aaa<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"width:200px;height: 300px;background-color: palevioletred"</span>&gt;</span>bbb<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/source/_posts/1570718511518.png" alt="1570718511518"></p>
+</li>
+<li><p>打了一串英文字符无法实现换行，被堪称一个单词，没有word-wrap, 直接被越界了</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"margin: auto;width:800px;height: 800px;"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"background-color: brown; float: left;height: 200px;width: 200px"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"font-size: 50px"</span>&gt;</span>陈璐陈璐陈陈璐陈璐陈璐陈璐陈璐陈璐陈璐<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"font-size: 50px"</span>&gt;</span>abckdsabckdsabckdsabckdsabckdsabckdsabckdsabckdsabckdsabckds<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">每天都要在进步</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/10/关于float/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-打开转盘锁：陷入死循环" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/08/打开转盘锁：陷入死循环/">打开转盘锁：陷入死循环</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/08/打开转盘锁：陷入死循环/" class="archive-article-date">
+  	<time datetime="2019-10-08T12:54:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题1：将走过的点置为deadends"><a href="#问题1：将走过的点置为deadends" class="headerlink" title="问题1：将走过的点置为deadends!!!"></a>问题1：将走过的点置为deadends!!!</h2><h2 id="问题2：不会用set"><a href="#问题2：不会用set" class="headerlink" title="问题2：不会用set"></a>问题2：不会用set</h2><h2 id="问题3：不会用deque，总之思路不是很清楚"><a href="#问题3：不会用deque，总之思路不是很清楚" class="headerlink" title="问题3：不会用deque，总之思路不是很清楚"></a>问题3：不会用deque，总之思路不是很清楚</h2><h2 id="贴个代码看清楚一点"><a href="#贴个代码看清楚一点" class="headerlink" title="贴个代码看清楚一点"></a>贴个代码看清楚一点</h2><h1 id="广度优先搜索问题在于做标记？？？"><a href="#广度优先搜索问题在于做标记？？？" class="headerlink" title="广度优先搜索问题在于做标记？？？"></a>广度优先搜索问题在于做标记？？？</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">openLock</span><span class="params">(self, deadends, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type deadends: List[str]</span></span><br><span class="line"><span class="string">        :type target: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> deadends:</span><br><span class="line">            <span class="keyword">if</span> i==<span class="string">"0000"</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        self.checkTimes = <span class="number">0</span></span><br><span class="line">        self.target = target</span><br><span class="line">        self.deadends = set(deadends)</span><br><span class="line">        keys = deque()</span><br><span class="line">        keys.append([<span class="string">"0000"</span>,<span class="number">0</span>])</span><br><span class="line">        h=self.checkKey(keys) </span><br><span class="line">        <span class="keyword">return</span> h       </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">checkKey</span><span class="params">(self,keys)</span>:</span></span><br><span class="line">        self.deadends.add(<span class="string">"0000"</span>)</span><br><span class="line">        <span class="keyword">while</span> keys:</span><br><span class="line">            i,thisnum = keys.popleft()</span><br><span class="line">            <span class="keyword">if</span> i == self.target:</span><br><span class="line">                <span class="keyword">return</span> thisnum</span><br><span class="line">            nextkey =[]</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                h1 = list(i)</span><br><span class="line">                h2 = list(i)</span><br><span class="line">                h1[j] = str((int(h1[j])+<span class="number">1</span>)%<span class="number">10</span>)</span><br><span class="line">                h2[j] = str((int(h2[j])<span class="number">-1</span>)%<span class="number">10</span>)</span><br><span class="line">                nextkey.append(<span class="string">''</span>.join(h1))</span><br><span class="line">                nextkey.append(<span class="string">''</span>.join(h2))</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> nextkey:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> i <span class="keyword">in</span> self.deadends:</span><br><span class="line">                    self.deadends.add(i)</span><br><span class="line">                    keys.append([i,thisnum+<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode 中等难度</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/08/打开转盘锁：陷入死循环/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-day1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/08/day1/">day1</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/08/day1/" class="archive-article-date">
+  	<time datetime="2019-10-08T11:21:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="重点1：岛屿周围一圈置零"><a href="#重点1：岛屿周围一圈置零" class="headerlink" title="重点1：岛屿周围一圈置零"></a>重点1：岛屿周围一圈置零</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</span><br><span class="line">            <span class="string">'''list这里的拼接要注意格式，要知道什么情况会出现none'''</span></span><br><span class="line">        grid[i]=[<span class="string">'0'</span>]+grid[i]+[<span class="string">'0'</span>]</span><br><span class="line">        head = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(col+<span class="number">2</span>):</span><br><span class="line">    head.append(<span class="string">'0'</span>)</span><br><span class="line">            <span class="string">'''list这里的拼接要注意格式'''</span></span><br><span class="line">grid = [head]+grid+[head]</span><br></pre></td></tr></table></figure>
+
+<h2 id="重点2：将遍历过的地方做“标记”：置零"><a href="#重点2：将遍历过的地方做“标记”：置零" class="headerlink" title="重点2：将遍历过的地方做“标记”：置零"></a>重点2：将遍历过的地方做“标记”：置零</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> self.matrix[i][j] == <span class="string">'0'</span>:</span><br><span class="line">           <span class="keyword">return</span></span><br><span class="line">   <span class="keyword">else</span>:</span><br><span class="line">       self.matrix[i][j]=<span class="string">'0'</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">leetcode广度优先搜索总结</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/08/day1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -318,6 +570,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">leetcode广度优先搜索总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode 中等难度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">每天都要在进步</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
